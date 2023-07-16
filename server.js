@@ -10,7 +10,6 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 });
-const Host = process.env.HOST || "localhost";
 const port = process.env.PORT || 4000;
 app.use(express.json());
 // Handle uncaught exceptions
@@ -19,8 +18,8 @@ process.on("uncaughtException", (err) => {
   process.exit(1);
 });
 
-app.listen(port, Host, () => {
-  console.log(`Server is running on port: ${port} in ${process.env.NODE_ENV}`);
+app.listen(port, (req, res) => {
+  console.log(`Server is running on port: ${port} in ${process.env.NODE_ENV} `);
 });
 
 app.listen();

@@ -48,6 +48,7 @@ app.use("/api/v1", PhotoRoutes);
 app.use("/api/v1", CategoryRoutes);
 
 app.get("/", (req, res) => {
+  console.log(req.hostname);
   res.send("Hello, World!");
 });
 
