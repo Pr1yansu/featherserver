@@ -12,6 +12,6 @@ const router = express.Router();
 router.post("/category", isAuthenticated, isAdmin, createCategory);
 router.post("/category", isAuthenticated, isAdmin, deleteCategory);
 
-router.post("/category", getAllCategories);
+router.get("/category", getAllCategories);
 
 module.exports = router;
