@@ -83,12 +83,20 @@ exports.getPhotos = asyncError(async (req, res, next) => {
 });
 
 exports.getPhotosAll = asyncError(async (req, res, next) => {
-  const photos = await Photo.find();
+  const resultPerPage = 12;
+  const photoCount = await Photo.countDocuments();
+  const apiFeature = new ApiFeatures(Photo.find(), req.query)
+    .search()
+    .filter()
+    .pagination(resultPerPage);
+
+  const photos = await apiFeature.query;
   if (!photos) {
     next(new ErrorHandler(404, "Photo not found"));
   }
   res.status(200).json({
     success: true,
+    photoCount: photoCount,
     photos,
   });
 });
