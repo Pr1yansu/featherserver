@@ -20,11 +20,6 @@ app.use(
     secret: "your_session_secret",
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === "development" ? true : false,
-      httpOnly: process.env.NODE_ENV === "development" ? true : false,
-      sameSite: process.env.NODE_ENV === "development" ? true : "none",
-    },
   })
 );
 
