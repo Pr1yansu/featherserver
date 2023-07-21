@@ -98,6 +98,7 @@ exports.getPhotosAll = asyncError(async (req, res, next) => {
     success: true,
     photoCount: photoCount,
     photos,
+    resultPerPage,
   });
 });
 
