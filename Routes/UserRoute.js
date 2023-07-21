@@ -36,8 +36,7 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/login",
-    successRedirect: process.env.FRONTEND_URL,
+    failureRedirect: "/login,
   }),
   (req, res) => {
     // Redirect or handle the successful authentication response
