@@ -37,7 +37,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/login",
-    successRedirect:"/me"
+    successRedirect:"https://featherserver.onrender.com/api/v1/me"
   })
 );
 
