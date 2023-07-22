@@ -17,14 +17,9 @@ connectDb();
 // Set up session middleware
 app.use(
   session({
-    secret: "your_session_secret",
+    secret: "session_secret",
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      secure: process.env.NODE_ENV === "development" ? true : false,
-      httpOnly: process.env.NODE_ENV === "development" ? true : false,
-      sameSite: process.env.NODE_ENV === "development" ? true : "none",
-    },
   })
 );
 
@@ -46,11 +41,6 @@ app.enable("trust proxy");
 app.use("/api/v1", UserRoutes);
 app.use("/api/v1", PhotoRoutes);
 app.use("/api/v1", CategoryRoutes);
-
-app.get("/", (req, res) => {
-  console.log(req.hostname);
-  res.send("Hello, World!");
-});
 
 app.get("/logout", function (req, res, next) {
   req.logout(function (err) {
