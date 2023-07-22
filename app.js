@@ -20,6 +20,12 @@ app.use(
     secret: "your_session_secret_here",
     resave: false,
     saveUninitialized: false,
+
+    cookie: {
+      httpOnly: process.env.NODE_ENV === "development" ? false : true,
+      secure: process.env.NODE_ENV === "development" ? false : true,
+      sameSite: process.env.NODE_ENV === "development" ? false : "none",
+    },
   })
 );
 
@@ -27,7 +33,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
