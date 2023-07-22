@@ -23,18 +23,18 @@ app.use(
   })
 );
 
+app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  })
+);
 app.use(passport.authenticate("session"));
 app.use(passport.initialize());
 app.use(passport.session());
 // Initialize Passport and restore authentication state from session
-app.use(
-  cors({
-    credentials: true,
-    origin: "https://localhost:3000",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  })
-);
-app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.enable("trust proxy");
