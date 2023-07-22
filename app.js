@@ -53,5 +53,9 @@ app.get("/logout", function (req, res, next) {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello Server is live");
+});
+
 app.use(handleError);
 module.exports = app;
