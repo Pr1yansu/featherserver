@@ -20,7 +20,7 @@ app.use(cookieParser());
 // Set up session middleware
 app.use(
   session({
-    secret: "session_secret",
+    secret: "your_session_secret_here",
     resave: false,
     saveUninitialized: false,
   })
@@ -34,11 +34,11 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(fileUpload());
-app.use(passport.initialize());
-app.use(passport.session());
 app.enable("trust proxy");
 
 app.use("/api/v1", UserRoutes);

@@ -1,8 +1,9 @@
 const { ErrorHandler } = require("./errohandler");
 
 exports.isAuthenticated = (req, res, next) => {
-  console.log();
-  if (req.user) {
+  const token = req.cookies;
+  console.log(token);
+  if (token) {
     return next();
   }
   return next(

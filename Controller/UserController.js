@@ -53,6 +53,10 @@ exports.getAllUser = asyncError(async (req, res, next) => {
 });
 //Get single user
 exports.getSingleUser = asyncError(async (req, res, next) => {
+  if (!req.user) {
+    return next(new ErrorHandler(403, "Please Login"));
+  }
+
   const email = req.user.email;
 
   const user = await User.findOne({ email });
