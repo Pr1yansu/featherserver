@@ -1,10 +1,10 @@
 const { ErrorHandler } = require("./errohandler");
 
 exports.isAuthenticated = (req, res, next) => {
+  const User = req.user;
   const token = req.cookies;
-  console.log(token);
   if (token) {
-    console.log(req.user);
+    console.log(User);
     return next();
   }
   return next(
