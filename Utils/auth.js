@@ -4,6 +4,7 @@ exports.isAuthenticated = (req, res, next) => {
   const token = req.cookies;
   console.log(token);
   if (token) {
+    console.log(req.user);
     return next();
   }
   return next(
