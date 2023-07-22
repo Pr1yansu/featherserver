@@ -10,12 +10,9 @@ const passport = require("passport");
 const passportConfig = require("./Config/passport");
 const { handleError } = require("./Utils/errohandler");
 const bodyparser = require("body-parser");
-const cookieParser = require("cookie-parser");
 
 const app = express();
 connectDb();
-
-app.use(cookieParser());
 
 // Set up session middleware
 app.use(
@@ -26,17 +23,17 @@ app.use(
   })
 );
 
+app.use(passport.authenticate("session"));
+app.use(passport.initialize());
+app.use(passport.session());
 // Initialize Passport and restore authentication state from session
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL,
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
-app.use(passport.authenticate("session"));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(fileUpload());
