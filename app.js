@@ -10,9 +10,12 @@ const passport = require("passport");
 const passportConfig = require("./Config/passport");
 const { handleError } = require("./Utils/errohandler");
 const bodyparser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 connectDb();
+
+app.use(cookieParser());
 
 // Set up session middleware
 app.use(

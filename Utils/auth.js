@@ -1,7 +1,8 @@
 const { ErrorHandler } = require("./errohandler");
 
 exports.isAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
+  console.log();
+  if (req.user) {
     return next();
   }
   return next(
@@ -11,7 +12,7 @@ exports.isAuthenticated = (req, res, next) => {
 
 exports.isAdmin = (req, res, next) => {
   if (req.user && req.user.role === "admin") {
-    next();
+    return next();
   } else {
     return next(
       new ErrorHandler(403, "You are not admin to access this resource")
