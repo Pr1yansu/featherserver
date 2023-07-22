@@ -22,9 +22,9 @@ app.use(
     saveUninitialized: false,
 
     cookie: {
-      httpOnly: process.env.NODE_ENV === "development" ? false : true,
-      secure: process.env.NODE_ENV === "development" ? false : true,
-      sameSite: process.env.NODE_ENV === "development" ? false : "none",
+      httpOnly: process.env.NODE_ENV === "production" ? true : false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : false,
     },
   })
 );
