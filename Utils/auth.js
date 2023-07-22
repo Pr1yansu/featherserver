@@ -4,8 +4,9 @@ exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-
-  new ErrorHandler(403, "You are not logged to access this resource");
+  return next(
+    new ErrorHandler(403, "You are not logged to access this resource")
+  );
 };
 
 exports.isAdmin = (req, res, next) => {
