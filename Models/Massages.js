@@ -19,6 +19,6 @@ const massageSchema = new mongoose.Schema({
   },
 });
 
-const Massage = mongoose.model("Photo", massageSchema);
+const Massage = mongoose.model("Massage", massageSchema);
 
 module.exports = Massage;
