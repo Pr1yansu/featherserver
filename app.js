@@ -5,6 +5,7 @@ const connectDb = require("./Config/db");
 const UserRoutes = require("./Routes/UserRoute");
 const PhotoRoutes = require("./Routes/PhotoRoute");
 const CategoryRoutes = require("./Routes/CategoryRoute");
+const MassagesRoutes = require("./Routes/MassagesRoute");
 const session = require("express-session");
 const passport = require("passport");
 const passportConfig = require("./Config/passport");
@@ -48,6 +49,7 @@ app.enable("trust proxy");
 app.use("/api/v1", UserRoutes);
 app.use("/api/v1", PhotoRoutes);
 app.use("/api/v1", CategoryRoutes);
+app.use("/api/v1", MassagesRoutes);
 
 app.get("/logout", function (req, res, next) {
   req.logout(function (err) {
