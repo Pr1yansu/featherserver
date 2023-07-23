@@ -3,7 +3,7 @@ const {
   createMassage,
   getAllMassage,
   getSingleMassage,
-} = require("../Controller/massageController");
+} = require("../Controller/MassageController");
 
 const router = express.Router();
 
