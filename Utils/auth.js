@@ -9,7 +9,8 @@ exports.isAuthenticated = (req, res, next) => {
   );
 };
 exports.isAdmin = (req, res, next) => {
-  if (req.isAuthenticated() && req.user.role === "admin") {
+  console.log(req.user);
+  if (req.user.role === "admin") {
     return next();
   } else {
     return next(
