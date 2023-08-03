@@ -1,7 +1,6 @@
 const { ErrorHandler } = require("./errohandler");
 
 exports.isAuthenticated = (req, res, next) => {
-  console.log(req.isAuthenticated());
   if (req.isAuthenticated()) {
     return next();
   }
@@ -11,7 +10,9 @@ exports.isAuthenticated = (req, res, next) => {
 };
 exports.isAdmin = (req, res, next) => {
   console.log(req.user);
-  if (req.user.role === "admin") {
+  console.log(req.isAuthenticated());
+
+  if (req.isAuthenticated() && req.user.role === "admin") {
     return next();
   } else {
     return next(

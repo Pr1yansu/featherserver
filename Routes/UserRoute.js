@@ -48,13 +48,8 @@ router.post("/reset-password/:token", resetPassword);
 router.get("/me", isAuthenticated, getSingleUser);
 
 // admin Route
-router.get("/admin/users", isAuthenticated, isAdmin, getAllUser);
-router.get("/admin/user/profile/:id", isAuthenticated, isAdmin, getUserById);
-router.delete(
-  "/admin/user/profile/:id",
-  isAuthenticated,
-  isAdmin,
-  removeUserById
-);
+router.get("/admin/users", isAdmin, getAllUser);
+router.get("/admin/user/profile/:id", isAdmin, getUserById);
+router.delete("/admin/user/profile/:id", isAdmin, removeUserById);
 
 module.exports = router;

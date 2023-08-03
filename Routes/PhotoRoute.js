@@ -24,10 +24,10 @@ router.get("/photos", getPhotos);
 router.get("/photo/:id", getPhoto);
 
 // Update a photo
-router.put("photo/:id", isAuthenticated, isAdmin, updatePhoto);
+router.put("photo/:id", isAdmin, updatePhoto);
 
 // Delete a photo
-router.delete("photo/:id", isAuthenticated, isAdmin, deletePhoto);
+router.delete("photo/:id", isAdmin, deletePhoto);
 
 //Review a photo
 router.put("/photo/review", isAuthenticated, createReview);
