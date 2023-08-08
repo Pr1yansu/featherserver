@@ -84,21 +84,26 @@ exports.getPhotos = asyncError(async (req, res, next) => {
 
 exports.getPhotosAll = asyncError(async (req, res, next) => {
   const resultPerPage = 12;
-  const photoCount = await Photo.countDocuments();
-  const apiFeature = new ApiFeatures(Photo.find(), req.query)
-    .search()
-    .filter()
-    .pagination(resultPerPage);
 
-  const photos = await apiFeature.query;
-  if (!photos) {
-    next(new ErrorHandler(404, "Photo not found"));
+  const apiFeature = new ApiFeatures(Photo.find(), req.query).search().filter();
+
+  const totalPhotoCount = await Photo.countDocuments({}); // Count all documents
+
+  apiFeature.pagination(resultPerPage);
+  const photos = await apiFeature.query.lean(); // Use lean() to get plain objects
+
+  if (!photos || photos.length === 0) {
+    return res
+      .status(404)
+      .json({ success: false, message: "Photos not found" });
   }
+
   res.status(200).json({
     success: true,
-    photoCount: photoCount,
+    photoCount: totalPhotoCount,
     photos,
     resultPerPage,
+    filteredPhotosCount: photos.length,
   });
 });
 
