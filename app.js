@@ -56,6 +56,7 @@ app.get("/logout", function (req, res, next) {
     if (err) {
       return next(err);
     }
+    req.session.destroy();
     res.status(200).json({
       massage: "Logout Success",
     });
